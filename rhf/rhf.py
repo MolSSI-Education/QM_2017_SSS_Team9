@@ -25,7 +25,7 @@ class Rhf:
 
         self.nbf = mints.nbf()
 
-        self.nelec = -self.mol.molecular_charge()
+        self.nelec = int(options['nelec']/2) 
 
         #memory limitations
         if (self.nbf > 100):
@@ -52,7 +52,9 @@ class Rhf:
         self.g = np.array(mints.ao_eri())
         self.H = T + V
         self.S = np.array(mints.ao_overlap())
-        self.A = np.array(mints.ao_overlap().power(-0.5, 1.e-14))
+        self.A = mints.ao_overlap()
+        self.A.power(-0.5, 1.e-14)
+        self.A = np.array(self.A)
 
         self.E = 0.0
         self.e = np.zeros(len(self.H))
@@ -60,9 +62,7 @@ class Rhf:
 
     def build_density(self, F):
 
-        #Fp = (self.A).T @ F @ self.A
-        temp = self.A.T @ F
-        Fp = temp @ self.A
+        Fp = (self.A).T@ F @ self.A
         eps, Cp  = np.linalg.eigh(Fp)
         C = self.A @ Cp
         Cocc = C[:,:self.nelec]
@@ -74,9 +74,8 @@ class Rhf:
         D, self.e, self.C = self.build_density(self.H) 
 
         E_old = 0.0
-        F_old = None
 
-        for iteration in range(max_iter):
+        for iteration in range(self.max_iter):
 
             J = np.einsum("pqrs, rs -> pq", self.g, D)
             K = np.einsum("prqs, rs -> pq", self.g, D)
@@ -87,10 +86,9 @@ class Rhf:
             if self.diis == 'on' and iteration >= self.diis_start:
                 F = diis_helper.diis(F, D, self.diis_start,self.diis_vector)
 
-            D, self.e, self.C = self.build_density(F) 
-
             E_electric = np.sum((F + self.H) * D)
-            self.E = E_electric + mol.nuclear_repulsion_energy()
+            print(E_electric)
+            self.E = E_electric + self.mol.nuclear_repulsion_energy()
 
             E_diff = self.E - E_old
             E_old = self.E
@@ -99,8 +97,10 @@ class Rhf:
             grad = F @ D @ self.S - self.S @ D @ F
             grad_rms = np.mean(grad  ** 2) ** 0.5  
 
+            D, self.e, self.C = self.build_density(F) 
+
             print("Iteration: %3d Energy: % 16.12f  Energy difference: % 8.4f" % (iteration, self.E, E_diff))
-            if E_diff < e_conv and grad_rms < d_conv:
+            if E_diff < self.e_conv and grad_rms < self.d_conv:
                 break
 
         print("SCF has finished! \n")
@@ -121,7 +121,12 @@ if __name__ == '__main__':
     bas = 'sto-3g'
 
     options = {'energy_conv' : 1.0e-6, 'density_conv' : 1.0e-6,'max_iter': 25,
-                'diis' : 'off'} 
+                'diis' : 'off', 'nelec' : 10} 
 
     molecule = Rhf(mol, bas, options)
     molecule.get_energy()                                           
+    print(molecule.E)
+    psi4.set_options({"scf_type": "pk"})
+    psi4_energy = psi4.energy("SCF/sto-3g", molecule=mol)
+
+    print("Energy matches Psi4 %s" % np.allclose(psi4_energy, molecule.E))
