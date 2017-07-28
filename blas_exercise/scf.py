@@ -91,14 +91,12 @@ for iteration in range(25):
     # Build the energy
     E_electric = np.sum((F + H) * D)
     E_total = E_electric + mol.nuclear_repulsion_energy()
-    
 
     E_diff = E_total - E_old
     E_old = E_total
     print("Iter=%3d  E = % 16.12f  E_diff = % 8.4e  D_diff = % 8.4e" %
             (iteration, E_total, E_diff, grad_rms))
 
-    print(E_electric)
     # Break if e_conv and d_conv are met
     if (E_diff < e_conv) and (grad_rms < d_conv):
         break
@@ -115,7 +113,7 @@ psi4_energy = psi4.energy("SCF/STO-3G", molecule=mol)
 print("Energy matches Psi4 %s" % np.allclose(psi4_energy, E_total))
 
 
-np.savetxt("H.data", H.ravel(), delimiter=" ")
+np.savetxt("H.data", D.ravel(), delimiter=" ")
 np.savetxt("F.data", F.ravel(), delimiter=" ")
 np.savetxt("C.data", C.ravel(), delimiter=" ")
 np.savetxt("S.data", S.ravel(), delimiter=" ")
