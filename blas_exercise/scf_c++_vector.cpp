@@ -6,11 +6,11 @@
 #include<algorithm>
 
 void read_function(std::vector<double> & vec, std::string filename, int nbas) // pass the vector by reference to avoid embarassment
-{
-    std::ifstream input(filename);
-    double number;
-    for (int i = 0; i < nbas * nbas; i++){
-            input >> number;
+{																			  // its not advisable to use shared_ptr<std::vector<double>>	
+    std::ifstream input(filename);											  // as it adds an extra layer of pointers to the vector object  
+    double number;													          // which already uses shared_ptrs under the hood. So, shared_ptrs	
+    for (int i = 0; i < nbas * nbas; i++){									  // are very useful for custom classes. Fot standard container objects 	
+            input >> number;											      // unique_ptrs should be preferred over shared_ptrs.
             vec.push_back(number); // row major format
         }
 }
