@@ -21,7 +21,7 @@ def test_rhf():
     options = {'energy_conv' : 1.0e-6, 'density_conv' : 1.0e-6,'max_iter': 25,
                 'diis' : 'off', 'nelec' : 10} 
 
-    molecule = rhf.Rhf(mol, bas, options)
+    molecule = rhf.RHF(mol, bas, options)
     molecule.get_energy()                                           
     psi4.set_options({"scf_type": "pk"})
     psi4_energy = psi4.energy("SCF/"+ bas, molecule=mol)

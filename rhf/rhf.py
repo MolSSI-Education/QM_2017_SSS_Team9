@@ -10,7 +10,7 @@ import numpy as np
 import psi4
 #import diis_helper
 
-class Rhf:
+class RHF:
     def __init__(self, mol, basis_set, options):
 
         #build a moelcule 
@@ -123,7 +123,7 @@ if __name__ == '__main__':
     options = {'energy_conv' : 1.0e-6, 'density_conv' : 1.0e-6,'max_iter': 25,
                 'diis' : 'off', 'nelec' : 10} 
 
-    molecule = Rhf(mol, bas, options)
+    molecule = RHF(mol, bas, options)
     molecule.get_energy()                                           
     print(molecule.E)
     psi4.set_options({"scf_type": "pk"})
