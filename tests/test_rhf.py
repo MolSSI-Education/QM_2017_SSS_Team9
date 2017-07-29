@@ -55,7 +55,7 @@ def test_rhf_damp():
     psi4_energy = psi4.energy("SCF/"+ bas, molecule=mol)
     assert np.allclose(molecule.E, psi4_energy)
 
-def test_rhf_damp():
+def test_rhf_jk():
 
     """
     This function tests the rhf module with damping
