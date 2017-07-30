@@ -4,7 +4,7 @@ a perturbation method.
 """
 import numpy as np
 
-def mp2(molecule, hfe):
+def mp2(molecule, hfe, options):
 
     eps = molecule.e
 
@@ -24,11 +24,19 @@ def mp2(molecule, hfe):
                 for b in range(molecule.nelec, len(molecule.C)):
                     e_os += (iajb[i, a, j, b]*iajb[i, a, j, b])/(eps[i]+eps[j]-eps[a]-eps[b])
                     e_ss += ((iajb[i, a, j, b]-iajb[i, b, j, a])*iajb[i, a, j, b])/(eps[i]+eps[j]-eps[a]-eps[b])
-
-    #Apply a spin-component correction (SCS-MP2)
-    e_mp2 = (1./3.)*e_ss+(6./5.)*e_os
+    
+    #Scale the spin-components (SCS-MP2)?
+    scs = options['scs-mp2']
+    if scs == 'off':
+        e_mp2 = e_ss + e_os
+    elif scs == 'on':
+        e_mp2 = (1./3.)*e_ss+(6./5.)*e_os
+    else:
+        print("Please imput 'on' or 'off' for spin-component correction (scs-mp2)")
 
     #Compute the total energy
     e_total = e_mp2 + hfe
+
+    #print("Total Energy: ", e_total)
 
     return e_total
