@@ -5,6 +5,33 @@
 #include <vector>
 #include <algorithm>
 
+std::vector<double> operator+(std::vector<double>& left_vec, std::vector<double>& right_vec)
+{ 
+    if (left_vec.size() > right_vec.size())
+    {
+        std::vector<double> result = left_vec;
+        for(int i = 0; i < right_vec.size(); i++)
+       {
+            result[i] += right_vec[i];
+       }
+       return result;
+    }
+    else 
+    {
+      std::vector<double> result = right_vec;
+      for (int i =0; i < left_vec.size(); i++)
+      {
+          result[i] += left_vec[i];
+      }
+      return result;
+    } 
+    
+}
+
+
+  
+
+
 void read_function(std::vector<double> & vec, std::string filename, int nbas) // pass the vector by reference to avoid embarassment
 {																			  // its not advisable to use shared_ptr<std::vector<double>>	
     std::ifstream input(filename);											  // as it adds an extra layer of pointers to the vector object  
@@ -43,9 +70,9 @@ int main()
     std::cout << nelec << '\n';
 
     //F_plus_H = H;   // '='  operator overloading
-    
-    std::transform(H.begin(), H.end(), F.begin(), 
-               F_plus_H.begin(), std::plus<double>());  // one can write own '+' operator overloading
+    F_plus_H = H + F;       // implemented '+' operator overloading. The following is the transform function which was used before
+   // std::transform(H.begin(), H.end(), F.begin(), 
+     //          F_plus_H.begin(), std::plus<double>());
 
 
     double scf_energy = LAWrap::dot(nbas*nbas, F_plus_H.data(), 1, D.data(), 1); 
