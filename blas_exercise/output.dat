@@ -1,14 +1,14 @@
 
-*** tstart() called on tsmmers1-VirtualBox
-*** at Fri Jul 28 16:02:15 2017
+*** tstart() called on Boyis-MacBook-Pro.local
+*** at Fri Jul 28 11:55:56 2017
 
    => Loading Basis Set <=
 
     Name: STO-3G
     Role: ORBITAL
     Keyword: BASIS
-    atoms 1   entry O          line    81 file /home/tsmmers1/miniconda/envs/sss/share/psi4/basis/sto-3g.gbs 
-    atoms 2-3 entry H          line    19 file /home/tsmmers1/miniconda/envs/sss/share/psi4/basis/sto-3g.gbs 
+    atoms 1   entry O          line    81 file /Applications/anaconda/envs/sss/share/psi4/basis/sto-3g.gbs 
+    atoms 2-3 entry H          line    19 file /Applications/anaconda/envs/sss/share/psi4/basis/sto-3g.gbs 
 
     There are an even number of electrons - assuming singlet.
     Specify the multiplicity in the molecule input block.
@@ -39,7 +39,7 @@
 
   Rotational constants: A =     20.53324  B =     11.13094  C =      7.21807 [cm^-1]
   Rotational constants: A = 615570.97611  B = 333697.07564  C = 216392.23421 [MHz]
-  Nuclear repulsion =    8.002366450719078
+  Nuclear repulsion =    8.002366450719082
 
   Charge       = 0
   Multiplicity = 1
@@ -116,14 +116,14 @@
 
                         Total Energy        Delta E     RMS |[F,P]|
 
-   @RHF iter   0:   -74.47822390286230   -7.44782e+01   2.37683e-01 
-   @RHF iter   1:   -74.87493925585233   -3.96715e-01   5.71452e-02 
-   @RHF iter   2:   -74.93818342921406   -6.32442e-02   1.30573e-02 DIIS
-   @RHF iter   3:   -74.94126796873744   -3.08454e-03   4.50547e-03 DIIS
-   @RHF iter   4:   -74.94207455922202   -8.06590e-04   4.51733e-04 DIIS
-   @RHF iter   5:   -74.94207972782127   -5.16860e-06   7.92777e-05 DIIS
-   @RHF iter   6:   -74.94207989698430   -1.69163e-07   1.79426e-06 DIIS
-   @RHF iter   7:   -74.94207989707940   -9.50990e-11   9.23280e-09 DIIS
+   @RHF iter   0:   -74.47822390286231   -7.44782e+01   2.37683e-01 
+   @RHF iter   1:   -74.87493925585238   -3.96715e-01   5.71452e-02 
+   @RHF iter   2:   -74.93818342921411   -6.32442e-02   1.30573e-02 DIIS
+   @RHF iter   3:   -74.94126796873752   -3.08454e-03   4.50547e-03 DIIS
+   @RHF iter   4:   -74.94207455922206   -8.06590e-04   4.51733e-04 DIIS
+   @RHF iter   5:   -74.94207972782137   -5.16860e-06   7.92777e-05 DIIS
+   @RHF iter   6:   -74.94207989698435   -1.69163e-07   1.79426e-06 DIIS
+   @RHF iter   7:   -74.94207989707948   -9.51275e-11   9.23281e-09 DIIS
 
   ==> Post-Iterations <==
 
@@ -145,14 +145,14 @@
 
   Energy converged.
 
-  @RHF Final Energy:   -74.94207989707940
+  @RHF Final Energy:   -74.94207989707948
 
    => Energetics <=
 
-    Nuclear Repulsion Energy =              8.0023664507190784
-    One-Electron Energy =                -120.1995574949925469
-    Two-Electron Energy =                  37.2551111471940715
-    Total Energy =                        -74.9420798970793953
+    Nuclear Repulsion Energy =              8.0023664507190819
+    One-Electron Energy =                -120.1995574949926464
+    Two-Electron Energy =                  37.2551111471940857
+    Total Energy =                        -74.9420798970794806
 
 
 
@@ -173,12 +173,12 @@ Properties computed using the SCF density matrix
      X:     0.0000      Y:     0.0000      Z:     1.5340     Total:     1.5340
 
 
-*** tstop() called on tsmmers1-VirtualBox at Fri Jul 28 16:02:15 2017
+*** tstop() called on Boyis-MacBook-Pro.local at Fri Jul 28 11:55:56 2017
 Module time:
-	user time   =       0.28 seconds =       0.00 minutes
-	system time =       0.02 seconds =       0.00 minutes
+	user time   =       0.24 seconds =       0.00 minutes
+	system time =       0.01 seconds =       0.00 minutes
 	total time  =          0 seconds =       0.00 minutes
 Total time:
-	user time   =       0.28 seconds =       0.00 minutes
-	system time =       0.02 seconds =       0.00 minutes
+	user time   =       0.24 seconds =       0.00 minutes
+	system time =       0.01 seconds =       0.00 minutes
 	total time  =          0 seconds =       0.00 minutes
