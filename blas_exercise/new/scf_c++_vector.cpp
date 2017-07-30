@@ -1,9 +1,9 @@
-#include<fstream>
-#include<iostream>
-#include<lawrap/blas.h>
-#include<string>
-#include<vector>
-#include<algorithm>
+#include <fstream>
+#include <iostream>
+#include <lawrap/blas.h>
+#include <string>
+#include <vector>
+#include <algorithm>
 
 void read_function(std::vector<double> & vec, std::string filename, int nbas) // pass the vector by reference to avoid embarassment
 {																			  // its not advisable to use shared_ptr<std::vector<double>>	
