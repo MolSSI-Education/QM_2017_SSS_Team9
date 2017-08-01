@@ -29,4 +29,4 @@ set(CMAKE_BUILD_WITH_INSTALL_RPATH True)
 #name has to match name you give the pybind11 plugin
 #in established usually export.cpp
 pybind11_add_module(jk_binding MODULE jk_binding.cpp)
-target_link_libraries(jk_binding PRIVATE mkl_intel_lp64 mkl_sequential mkl_core $ENV{CONDA_PREFIX}/lib/libiomp5.dylib)
+#target_link_libraries(jk_binding PRIVATE mkl_intel_lp64 mkl_sequential mkl_core) 

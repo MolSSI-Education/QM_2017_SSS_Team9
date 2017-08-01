@@ -1,10 +1,11 @@
 import sys
+
 sys.path.append('/Users/boyi/molssi_sss/Gits/QM_2017_SSS_Team9_new-/JK_binding/build')
 import numpy as np
 import psi4
 import jk_binding    
 import time
-
+psi4.set_num_threads(4)
 # Make sure we get the same random array
 np.random.seed(0)
 

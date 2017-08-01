@@ -56,10 +56,10 @@ py::array_t<double> form_j_loop(py::array_t<double> I,
     
     std::vector<double> J_data(n*n); //std::vector calls new but will automatically delete when out of scope
 
-#pragma omp parallel
-{
     std::cout << "number of threads using:" << omp_get_max_threads() << "\n";
-#pragma omp for 
+
+{
+#pragma omp parallel for 
         for(int p = 0; p < n; p++)
         {
             for(int q = 0; q <= p; q++)
