@@ -12,7 +12,7 @@ endif()
 set(PYTHON_EXECUTABLE $ENV{CONDA_PREFIX}/bin/python3)
 
 # Find the pybind11 in the conda path
-set(PYBIND11_CPP_STANDARD -std=c++11)
+set(PYBIND11_CPP_STANDARD -std=c++11 -fopenmp)
 find_package(pybind11 CONFIG REQUIRED
 			 PATHS $ENV{CONDA_PREFIX}
 			 NO_DEFAULT_PATH)
