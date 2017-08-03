@@ -1,3 +1,7 @@
 timer.dat
+output.dat
 *.o
 *.x
+__pycache__/
+attic/
+obj/
